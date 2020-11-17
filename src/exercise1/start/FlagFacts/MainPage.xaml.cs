@@ -1,4 +1,4 @@
-using FlagData;
+﻿using FlagData;
 using Xamarin.Forms;
 using FlagFacts.Extensions;
 using System;
@@ -24,14 +24,15 @@ namespace FlagFacts
 
         public Flag CurrentFlag
         {
-            get {
+            get
+            {
                 return repository.Flags[currentFlag];
             }
         }
 
         private void InitializeData()
         {
-            country.ItemsSource = (IList) repository.Countries;
+            country.ItemsSource = (IList)repository.Countries;
             country.SelectedItem = CurrentFlag.Country;
             country.SelectedIndexChanged += (s, e) => CurrentFlag.Country = repository.Countries[country.SelectedIndex];
 
@@ -49,7 +50,7 @@ namespace FlagFacts
         private async void OnShow(object sender, EventArgs e)
         {
             await DisplayAlert(CurrentFlag.Country,
-                $"{CurrentFlag.DateAdopted:D} - {CurrentFlag.IncludesShield}: {CurrentFlag.MoreInformationUrl}", 
+                $"{CurrentFlag.DateAdopted:D} - {CurrentFlag.IncludesShield}: {CurrentFlag.MoreInformationUrl}",
                 "OK");
         }
 
@@ -70,7 +71,7 @@ namespace FlagFacts
         {
             currentFlag++;
             if (currentFlag >= repository.Flags.Count)
-                currentFlag = repository.Flags.Count-1;
+                currentFlag = repository.Flags.Count - 1;
             InitializeData();
         }
     }
